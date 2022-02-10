@@ -11,7 +11,7 @@
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
-                        <li class="active"><a href="#">Show All</a></li>
+                        <li class="active"><a href="/shop">Show All</a></li>
                         {% for i in ct %}
                         <li><a href="{{i.get_url}}">{{i.name}}</a></li>
                         {% endfor %}
@@ -151,7 +151,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">${{i.price}}</p>
-                                    <a href="product-details.html">
+                                    <a href="{{i.get_url}}">
                                         <h6>{{i.name}}</h6>
                                     </a>
                                 </div>

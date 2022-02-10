@@ -21,5 +21,9 @@ def shop(request, c_slug=None):
     return render(request, 'shop.html', {'pr': prodt, 'ct': cat})
 
 
-def detail(request):
-    return render(request, 'productdetails.html')
+def detail(request,c_slug,product_slug):
+    try:
+        prod=products.objects.get(category__slug=c_slug,slug=product_slug)
+    except Exception as e:
+        raise e
+    return render(request, 'productdetails.html',{'pr':prod})
