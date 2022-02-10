@@ -11,13 +11,10 @@
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
-                        <li class="active"><a href="#">Chairs</a></li>
-                        <li><a href="#">Beds</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Home Deco</a></li>
-                        <li><a href="#">Dressings</a></li>
-                        <li><a href="#">Tables</a></li>
+                        <li class="active"><a href="#">Show All</a></li>
+                        {% for i in ct %}
+                        <li><a href="#">{{i.name}}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
