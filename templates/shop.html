@@ -13,7 +13,7 @@
                     <ul>
                         <li class="active"><a href="#">Show All</a></li>
                         {% for i in ct %}
-                        <li><a href="#">{{i.name}}</a></li>
+                        <li><a href="{{i.get_url}}">{{i.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
