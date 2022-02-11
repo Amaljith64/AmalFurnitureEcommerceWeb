@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from django.db.models import Q
 
 
 # Create your views here.
@@ -27,3 +28,13 @@ def detail(request,c_slug,product_slug):
     except Exception as e:
         raise e
     return render(request, 'productdetails.html',{'pr':prod})
+
+
+def searching(request):
+    prod=None
+    querry=None
+    if 'q' in request.GET:
+        querry=request.GET.get('q')
+        prod=products.objects.all().filter(Q(name__contains=querry)|Q(desc__contains=querry))
+
+    return render(request,'search.html',{'qr':querry,'pr':prod})
