@@ -21,16 +21,17 @@
                                         <th>Quantity</th>
                                     </tr>
                                 </thead>
+                                {% for i in ci %}
                                 <tbody>
                                     <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="{% static 'img/bg-img/cart1.jpg' %}" alt="Product"></a>
+                                            <a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
+                                            <h5>{{i.prodt.id}}</h5>
                                         </td>
                                         <td class="price">
-                                            <span>$130</span>
+                                            <span>${{i.prodt.price}}</span>
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
@@ -45,6 +46,7 @@
                                     </tr>
 
                                 </tbody>
+                                {% endfor %}
                             </table>
                         </div>
                     </div>
