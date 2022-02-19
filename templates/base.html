@@ -72,18 +72,15 @@
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/shop">Shop</a></li>
 
-                    <li><a href="{% url 'cartDetails' %}">Cart</a></li>
+
                     <li><a href="checkout.html">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div>
+
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>(0)</span></a>
+                <a href="{% url 'cartDetails' %}" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>{{itc}}</span></a>
 
                 <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
             </div>

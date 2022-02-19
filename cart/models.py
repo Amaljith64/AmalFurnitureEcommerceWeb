@@ -20,3 +20,6 @@ class items(models.Model):
     def __str__(self):
         return self.prodt
 
+    def total(self):
+        return self.prodt.price*self.quan
+
