@@ -6,8 +6,7 @@ from django.core.paginator import Paginator,EmptyPage,InvalidPage
 
 # Create your views here.
 
-def home(request, ):
-    return render(request, 'index.html')
+
 
 
 def shop(request, c_slug=None):

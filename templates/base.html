@@ -48,7 +48,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <a href="{% url 'shop' %}"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -64,16 +64,16 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <a href="{% url 'shop' %}"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/shop">Shop</a></li>
 
 
-                    <li><a href="checkout.html">Checkout</a></li>
+
+                    <li><a href="{% url 'cartDetails' %}">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -81,6 +81,42 @@
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="{% url 'cartDetails' %}" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>{{itc}}</span></a>
+                {% if user.is_authenticated %}
+                <div>
+			     <ul>
+				 <li class="dropdown profile_details_drop">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'img/core-img/user.png' %}" alt="">Hai {{user.username}}<span class="caret"></span></a>
+					<div class="mega-dropdown-menu">
+						<div >
+							<ul class="dropdown-menu drp-mnu">
+                                <li><a href="{% url 'logout' %}">logout</a></li>
+                            </ul>
+						</div>
+					</div>
+				 </li>
+			    </ul>
+		       </div>
+                {% else %}
+                <div >
+			     <ul>
+				 <li class="dropdown profile_details_drop">
+
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'img/core-img/user.png' %}" alt="">Login<span class="caret"></span></a>
+					<div class="mega-dropdown-menu">
+						<div >
+							<ul class="dropdown-menu drp-mnu">
+
+
+                                <li><a href="{% url 'register' %}">Register</a></li>
+								<li><a href="{% url 'login' %}">login</a></li>
+
+							</ul>
+						</div>
+					</div>
+				 </li>
+			    </ul>
+		       </div>
+                {% endif %}
 
                 <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
             </div>
@@ -150,25 +186,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <div class="footer_menu">
                             <nav class="navbar navbar-expand-lg justify-content-end">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-                                <div class="collapse navbar-collapse" id="footerNavContent">
-                                    <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="index.html">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="shop.html">Shop</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="product-details.html">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Checkout</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </nav>
                         </div>
                     </div>
