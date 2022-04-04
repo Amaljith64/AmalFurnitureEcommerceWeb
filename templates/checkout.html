@@ -14,18 +14,16 @@
                             </div>
 
                             <form action="#" method="post">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="first_name" value="" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="last_name" value="" placeholder="Last Name" required>
+                                        <input type="name" class="form-control" id="first_name" name="name" placeholder="Name" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" value="">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="">
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <select class="w-100" id="country">
+                                        <select class="w-100" id="country" name="country">
                                         <option value="usa">United States</option>
                                         <option value="uk">United Kingdom</option>
                                         <option value="ger">Germany</option>
@@ -37,14 +35,13 @@
                                     </select>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control mb-3" id="street_address" placeholder="Address" value="">
+                                        <input type="text" class="form-control mb-3" id="street_address" name= "address" placeholder="Address" value="">
                                     </div>
+
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" value="">
+                                        <input type="number" class="form-control" name="amount"  placeholder="amount" value="{{t}}" readonly>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="number" class="form-control" id="phone_number" min="0" placeholder="Phone No" value="">
-                                    </div>
+                                    <button type="submit" class="btn btn-success btn-block">Submit</button>
 
                                 </div>
                             </form>
@@ -58,9 +55,50 @@
                                 <li><span>delivery:</span> <span>Free</span></li>
                                 <li><span>total:</span> <span>${{t}}</span></li>
                             </ul>
+                            {% if payment %}
 
                             <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Pay with Razorpay</a>
+                                <button id="rzp-button1"><a  class="btn amado-btn w-100">Pay with Razorpay</a></button>
+                                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_ZY4ulZfKRFRCrI", // Enter the Key ID generated from the Dashboard
+    "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Coffee Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 2
+    "callback_url": "success",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+{% endif %}
                             </div>
                         </div>
                     </div>
